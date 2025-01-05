@@ -1,0 +1,11 @@
+[
+    {
+      "role": "Software Engineer Student",
+      "organisation": "ALX",
+      "startDate": "Feb, 2023",
+      "endDate": "Present",
+      "experiences": ["Core Programming and Data Structures", "End-to-End Web Application Development"],
+      "imageSrc": "history/alx.jpg"
+    }
+   
+]
