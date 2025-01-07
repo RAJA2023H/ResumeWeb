@@ -1,5 +1,5 @@
 import React from "react";
-
+import { ContactForm } from "./ContactForm";
 import styles from "./Contact.module.css";
 import emailIcon from '../../../src/assets/contact/emailIcon.png';
 import linkedinIcon from '../../../src/assets/contact/linkedinIcon.png';
@@ -13,6 +13,7 @@ export const Contact = () => {
             <h2>Contact</h2>
             <p>Feel free to reach out</p>
         </div>
+        <ContactForm />
         <ul className={styles.links}>
             <li className={styles.link}>
                 <img src={emailIcon} alt="Email icon" />
