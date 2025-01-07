@@ -13,8 +13,8 @@ export const Contact = () => {
             <h2>Contact</h2>
             <p>Feel free to reach out</p>
         </div>
-        <div className={styles.formSection}>
-                    <ContactForm />
+        <div style={{ display: 'block', backgroundColor: 'red' }}>
+            <ContactForm />
         </div>
         <ul className={styles.links}>
             <li className={styles.link}>
