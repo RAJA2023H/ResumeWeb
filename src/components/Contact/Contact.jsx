@@ -13,7 +13,9 @@ export const Contact = () => {
             <h2>Contact</h2>
             <p>Feel free to reach out</p>
         </div>
-        <ContactForm />
+        <div className={styles.formSection}>
+                    <ContactForm />
+        </div>
         <ul className={styles.links}>
             <li className={styles.link}>
                 <img src={emailIcon} alt="Email icon" />

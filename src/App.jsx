@@ -5,7 +5,10 @@ import { About } from "./components/About/About";
 import { Experience } from './components/Experience/Experience';
 import { Projects } from './components/Projects/Projects';
 import { Contact } from './components/Contact/Contact';
+import { init } from '@emailjs/browser';
 
+
+init(process.env.REACT_APP_EMAILJS_PUBLIC_KEY);
 
 function App() {
 
