@@ -15,7 +15,7 @@ export const Contact = () => {
         </div>
         <div className={styles.formSection}>
             <p>fill out the form</p>
-            <ContactForm />
+            {ContactForm ? <ContactForm /> : <p>ContactForm not loaded</p>}
         </div>
         <ul className={styles.links}>
             <li className={styles.link}>
