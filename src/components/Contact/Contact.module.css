@@ -10,6 +10,7 @@
   width: 100vw;
   padding: 58px 10%;
   gap: 10px;
+  flex-wrap: wrap;
 }
 
 .text h2 {

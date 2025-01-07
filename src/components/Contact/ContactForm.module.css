@@ -35,7 +35,8 @@
 
 .formSection {
   flex: 2;
-  max-width: 600px;
+  max-width: 100%;
+  z-index: 10;
 }
 
 .links {

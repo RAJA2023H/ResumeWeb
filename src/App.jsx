@@ -6,11 +6,13 @@ import { Experience } from './components/Experience/Experience';
 import { Projects } from './components/Projects/Projects';
 import { Contact } from './components/Contact/Contact';
 import { init } from '@emailjs/browser';
+import React, { useEffect } from 'react';
 
-
-init(process.env.REACT_APP_EMAILJS_PUBLIC_KEY);
 
 function App() {
+  useEffect(() => {
+    init(import.meta.env.VITE_EMAILJS_PUBLIC_KEY);
+  }, []);
 
   return (
     <div className={styles.App}>
