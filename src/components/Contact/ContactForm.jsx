@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import emailjs from '@emailjs/browser';
 import styles from './ContactForm.module.css';
 
@@ -10,6 +10,15 @@ export const ContactForm = () => {
   });
   const [status, setStatus] = useState('');
 
+  useEffect(() => {
+    console.log('ContactForm mounted');
+    console.log('Environment variables status:', {
+      serviceId: import.meta.env.VITE_APP_EMAILJS_SERVICE_ID ? 'Present' : 'Missing',
+      templateId: import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID ? 'Present' : 'Missing',
+      publicKey: import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY ? 'Present' : 'Missing'
+    });
+  }, []);
+  
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prevState => ({
