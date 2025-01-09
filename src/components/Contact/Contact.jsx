@@ -11,10 +11,9 @@ export const Contact = () => {
     <footer id="contact" className={styles.container}>
         <div className={styles.text}>
             <h2>Contact</h2>
-            <p>Feel free to reach out</p>
+            <p>Feel free to reach out for collaboration</p>
         </div>
         <div className={styles.formSection}>
-            <p>fill out the form</p>
             <ContactForm />
         </div>
         <ul className={styles.links}>

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import emailjs from '@emailjs/browser';
 import styles from './ContactForm.module.css';
 
+
 export const ContactForm = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -18,7 +19,7 @@ export const ContactForm = () => {
       publicKey: import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY ? 'Present' : 'Missing'
     });
   }, []);
-  
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prevState => ({

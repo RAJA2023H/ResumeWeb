@@ -52,15 +52,14 @@
   }
   
   .heroImg {
-    width: 50%;
+    width: 80%;
     z-index: 1;
     border-radius: 50%;
     object-fit: cover;
     max-width: 300px; 
     max-height: 300px;
     margin-left: 50px;
-    margin-bottom: 60px;;
-    
+    margin-bottom: 60px;
     animation-name: floating;
     animation-duration: 3s;
     animation-iteration-count: infinite;
@@ -81,8 +80,8 @@
   
   .topBlur {
     position: absolute;
-    width: 50vw;
-    height: 50vw;
+    width: 40vw;
+    height: 20vw;
     min-width: 350px;
     min-width: 350px;
     top: -128px;
@@ -95,8 +94,8 @@
   
   .bottomBlur {
     position: absolute;
-    width: 70vw;
-    height: 50vw;
+    width: 50vw;
+    height: 30vw;
     min-width: 350px;
     min-width: 250px;
     top: 246px;
@@ -114,5 +113,10 @@
   
     .content {
       align-items: center;
+    }
+    .heroImg {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
     }
   }
