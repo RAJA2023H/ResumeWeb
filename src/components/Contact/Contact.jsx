@@ -15,7 +15,6 @@ export const Contact = () => {
                 <p>Feel free to reach out for collaboration</p>
             </div>
             <div className={styles.formSection}>
-                <h2>ContactForm</h2>
                 <ContactForm />
             </div>
             <ul className={styles.links}>

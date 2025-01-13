@@ -46,8 +46,8 @@
 
 .input:focus,
 .textarea:focus {
-  border-color: var(--color-accent);
-  box-shadow: 0 0 8px var(--color-accent);
+  border-color: var(--color-secondary);
+  box-shadow: 0 0 8px var(--color-secondary);
 }
 
 .textarea {
@@ -58,8 +58,8 @@
   padding: 12px 20px;
   font-size: 20px;
   font-weight: 600;
-  color: var(--color-secondary);
-  background-color: var(--color-accent);
+  color: var(--color-text);
+  background-color: var(--color-secondary);
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -67,19 +67,19 @@
 }
 
 .submitButton:disabled {
-  background-color: var(--color-muted);
+  background-color: var(--color-secondary);
   cursor: not-allowed;
 }
 
 .submitButton:hover:not(:disabled) {
-  background-color: var(--color-accent-hover);
+  background-color: var(--color-secondary);
   transform: translateY(-3px);
 }
 
 /* Status Message Styles */
 .successMessage {
   font-size: 18px;
-  color: var(--color-success);
+  color: var(--color-secondary);
   text-align: center;
 }
 
