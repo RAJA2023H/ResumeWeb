@@ -8,7 +8,7 @@
   flex-direction: row;
   justify-content: space-evenly;
   width: 100%;
-  padding: 50px 10%;
+  padding: 10px 10%;
   gap: 10px;
   max-width: 100vw;
   flex-wrap: wrap;
@@ -28,10 +28,10 @@
 
 .links {
   display: flex;
-  flex-direction: column;
   align-items: flex-start;
   list-style: none;
   gap: 26px;
+  padding: 0; 
 }
 
 .link {

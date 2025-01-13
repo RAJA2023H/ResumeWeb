@@ -1,13 +1,14 @@
 import React, { useState } from "react";
-
+import { useFullscreen } from "../../hooks/useFullscreen";
+import { Maximize2, Minimize2 } from "lucide-react"
 import styles from "./Navbar.module.css";
-import { getImageUrl } from "../../utils";
 import closeMenu from '../../../src/assets/nav/closeMenu.png';
 import openMenu from '../../../src/assets/nav/openMenu.png';
 
 
 export const Navbar = () => {
     const [menuOpen, setMenuOpen] = useState(false);
+    const { isFullscreen, toggleFullscreen } = useFullscreen();
     
     return (
         <nav className={styles.navbar}>
@@ -40,6 +41,21 @@ export const Navbar = () => {
                     </li>
                     <li>
                         <a href="#contact">Contact</a>
+                    </li>
+                    <li>
+                        <button 
+                            onClick={(e) => {
+                                e.preventDefault();
+                                toggleFullscreen();
+                            }}
+                            className={styles.fullscreenBtn}
+                        >
+                            {isFullscreen ? (
+                                <Minimize2 className={styles.fullscreenIcon} />
+                            ) : (
+                                <Maximize2 className={styles.fullscreenIcon} />
+                            )}
+                        </button>
                     </li>
                 </ul>
             </div>

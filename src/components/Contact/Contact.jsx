@@ -11,29 +11,28 @@ export const Contact = () => {
     return (
         <footer id="contact" className={styles.container}>
             <div className={styles.text}>
-                <h2>Contact</h2>
                 <p>Feel free to reach out for collaboration</p>
+                <div className={styles.formSection}>
+                    <ContactForm />
+                </div>
+                <ul className={styles.links}>
+                    <li className={styles.link}>
+                        <a href="mailto:hemmanyrajae@gmail.com">
+                            <img src={emailIcon} alt="Email icon" />
+                         </a>
+                    </li>
+                    <li className={styles.link}>
+                        <a href="https://www.linkedin.com/in/rajae-hemmany-441869251" target="_blank" rel="noopener noreferrer">
+                            <img src={linkedinIcon} alt="LinkedIn icon" />
+                        </a>
+                    </li>
+                    <li className={styles.link}>
+                        <a href="https://github.com/RAJA2023H" target="_blank" rel="noopener noreferrer">
+                            <img src={githubIcon} alt="Github icon" />
+                        </a>
+                    </li>
+                </ul>
             </div>
-            <div className={styles.formSection}>
-                <ContactForm />
-            </div>
-            <ul className={styles.links}>
-                <li className={styles.link}>
-                    <img src={emailIcon} alt="Email icon" />
-                    <a href="mailto:hemmanyrajae@gmail.com">hemmanyrajae@gmail.com</a>
-                </li>
-                <li className={styles.link}>
-                    <img
-                        src={linkedinIcon}
-                        alt="LinkedIn icon"
-                    />
-                    <a href="https://www.linkedin.com/in/rajae-hemmany-441869251">linkedin.com/rajae-hemmany</a>
-                </li>
-                <li className={styles.link}>
-                    <img src={githubIcon} alt="Github icon" />
-                    <a href="https://github.com/RAJA2023H">github.com/RAJA2023H</a>
-                </li>
-            </ul>
         </footer>
     );   
 };

@@ -37,6 +37,26 @@
   color: var(--color-text);
   text-decoration: none;
 }
+.fullscreenBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+.fullscreenIcon {
+  width: 20px;
+  height: 20px;
+  /* Use the same color as your other menu items */
+  color: inherit;
+}
+.fullscreenBtn:hover .fullscreenIcon {
+  /* Match your hover color */
+  color: your-hover-color;
+}
 
 @media screen and (max-width: 830px) {
   .navbar {
@@ -79,4 +99,10 @@
     display: flex;
     z-index: 1;
   }
+  .fullscreenBtn {
+    /* Match your mobile menu styling */
+    width: 100%;
+    justify-content: flex-start;
+    padding: 10px 20px;
+}
 }
