@@ -4,13 +4,7 @@ import styles from './ContactForm.module.css';
 
 
 export const ContactForm = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  });
-  const [status, setStatus] = useState('');
-
+  
   useEffect(() => {
     console.log('ContactForm mounted');
     console.log('Environment variables status:', {
@@ -19,6 +13,13 @@ export const ContactForm = () => {
       publicKey: import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY ? 'Present' : 'Missing'
     });
   }, []);
+
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
+  const [status, setStatus] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
