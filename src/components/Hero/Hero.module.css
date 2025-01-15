@@ -1,10 +1,12 @@
 @import "../../vars.css";
 
 .container {
-    position: relative;
+    /* deleted :position: relative */
     display: flex;
+    flex-direction: column; /* row */
+    text-align: center; /* added */
     align-items: center;
-    justify-content: space-between;
+    justify-content: center; /* space-between */
     margin-top: 49px;
     z-index: 1;
     margin-left: 10%;
@@ -12,6 +14,7 @@
   }
   
   .content {
+    margin-bottom: 20px; /* Added*/
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -112,7 +115,8 @@
     justify-content: center; 
     list-style: none;
     gap: 26px;
-    padding: 0; 
+    padding: 0;
+    margin: 10px 0 0; /* Add */
   }
   
   .link {
