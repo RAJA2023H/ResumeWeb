@@ -2,6 +2,9 @@ import React from "react";
 
 import styles from "./Hero.module.css";
 import heroImage from "../../../src/assets/hero/heroImage.jpg";
+import emailIcon from '../../../src/assets/contact/emailIcon.png';
+import linkedinIcon from '../../../src/assets/contact/linkedinIcon.png';
+import githubIcon from '../../../src/assets/contact/githubIcon.png';
 
 
 export const Hero = () => {
