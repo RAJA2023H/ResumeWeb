@@ -14,18 +14,18 @@ export const Hero = () => {
                     Contact Me
                 </a>
             </div>
-            <ul className={styles.content}>
-                <li className={styles.title}>
+            <ul className={styles.links}>
+                <li className={styles.link}>
                     <a href="mailto:hemmanyrajae@gmail.com">
                         <img src={emailIcon} alt="Email icon" />
                     </a>
                 </li>
-                <li className={styles.title}>
+                <li className={styles.link}>
                     <a href="https://www.linkedin.com/in/rajae-hemmany-441869251" target="_blank" rel="noopener noreferrer">
                         <img src={linkedinIcon} alt="LinkedIn icon" />
                     </a>
                 </li>
-                <li className={styles.title}>
+                <li className={styles.link}>
                     <a href="https://github.com/RAJA2023H" target="_blank" rel="noopener noreferrer">
                         <img src={githubIcon} alt="Github icon" />
                     </a>
