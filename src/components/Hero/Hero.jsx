@@ -12,7 +12,7 @@ export const Hero = () => {
         <section className={styles.container}>
             <div className={styles.content}>
                 <h1 className={styles.title}>Hi, I'm Rajae</h1>
-                <p className={styles.description}>I am an ALX student specializing in FrontEnd development, embarking on a structured and immersive journey to master essential skills</p>
+                <p className={styles.description}> Front-End Software Engineer Student at ALX | Lifelong learner | React passionate developer from Morocco </p>
                 <a href="mailto:hemmanyrajae@gmail.com" className={styles.contactBtn}>
                     Contact Me
                 </a>

@@ -105,10 +105,11 @@
     filter: blur(100px);
     z-index: 0;
   }
-  
+
   .links {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
+    justify-content: center; 
     list-style: none;
     gap: 26px;
     padding: 0; 
