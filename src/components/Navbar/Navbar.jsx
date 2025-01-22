@@ -1,19 +1,15 @@
 import React, { useState } from "react";
-import { useFullscreen } from "../../hooks/useFullscreen";
-import { Maximize2, Minimize2 } from "lucide-react"
 import styles from "./Navbar.module.css";
 import closeMenu from '../../../src/assets/nav/closeMenu.png';
 import openMenu from '../../../src/assets/nav/openMenu.png';
 
 
 export const Navbar = () => {
-    const [menuOpen, setMenuOpen] = useState(false);
-    const { isFullscreen, toggleFullscreen } = useFullscreen();
-    
+    const [menuOpen, setMenuOpen] = useState(false);    
     return (
         <nav className={styles.navbar}>
             <a className={styles.title} href="/">
-                Portfolio
+                Home
             </a>
             <div className={styles.menu}>
                 <img
@@ -40,23 +36,12 @@ export const Navbar = () => {
                         <a href="#projects">Projects</a>
                     </li>
                     <li>
-                        <a href="#contact">Contact</a>
+                        <a href="#Blog">Blog</a>
                     </li>
                     <li>
-                        <button 
-                            onClick={(e) => {
-                                e.preventDefault();
-                                toggleFullscreen();
-                            }}
-                            className={styles.fullscreenBtn}
-                        >
-                            {isFullscreen ? (
-                                <Minimize2 className={styles.fullscreenIcon} />
-                            ) : (
-                                <Maximize2 className={styles.fullscreenIcon} />
-                            )}
-                        </button>
+                        <a href="#contact">Contact</a>
                     </li>
+                    
                 </ul>
             </div>
         </nav>
