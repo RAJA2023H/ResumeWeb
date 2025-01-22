@@ -5,7 +5,7 @@ import path from "path";
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: '/ResumeWeb/',
+  base: '/',
   build: {
     outDir: 'dist',
     sourcemap: true,
@@ -15,4 +15,4 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-})
+});
