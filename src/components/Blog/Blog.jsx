@@ -1,103 +1,127 @@
-import React, { useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
-import { format } from 'date-fns';
-import { blogService } from '../../services/blogService';
-import { Card } from "../ui/Card";
+import React, { useState, useEffect } from 'react';
+import { collection, addDoc, query, orderBy, onSnapshot } from 'firebase/firestore';
+import { signInWithPopup } from 'firebase/auth';
+import { db, auth, googleProvider } from '../../firebase';
 import styles from './Blog.module.css';
 
 export default function Blog() {
+  const [posts, setPosts] = useState([]);
   const [selectedPost, setSelectedPost] = useState(null);
-  const { data: posts, isLoading, error } = useQuery({
-    queryKey: ['posts'],
-    queryFn: () => blogService.getPosts()
-  });
+  const [comments, setComments] = useState([]);
+  const [newComment, setNewComment] = useState('');
+  const [user, setUser] = useState(null);
+  const [error, setError] = useState(null);
 
-  if (isLoading) {
-    return (
-      <div className={styles.blogContainer}>
-        <div className="flex justify-center items-center min-h-[400px]">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500" />
-        </div>
-      </div>
-    );
-  }
+  // Fetch posts
+  useEffect(() => {
+    const samplePosts = [
+      {
+        id: '1',
+        title: 'First Blog Post',
+        content: 'This is my first blog post about my journey.',
+        author: 'John Doe',
+        createdAt: new Date(),
+      }
+    ];
+    setPosts(samplePosts);
+  }, []);
 
-  if (error) {
-    return (
-      <div className={styles.blogContainer}>
-        <div className={styles.error}>
-          Error loading posts: {error.message}
-        </div>
-      </div>
-    );
-  }
+  // Login with Google
+  const signInWithGoogle = async () => {
+    try {
+      const result = await signInWithPopup(auth, googleProvider);
+      setUser(result.user);
+      setError(null);
+    } catch (error) {
+      console.error("Login error", error);
+      setError(`Authentication failed: ${error.message}`);
+    }
+  };
+
+  // Add comment
+  const handleAddComment = async () => {
+    if (!user || !newComment.trim()) {
+      setError("Please sign in and enter a comment");
+      return;
+    }
+
+    try {
+      await addDoc(collection(db, 'posts', selectedPost.id, 'comments'), {
+        text: newComment,
+        author: user.displayName || 'Anonymous',
+        createdAt: new Date(),
+        userId: user.uid
+      });
+      setNewComment('');
+      setError(null);
+    } catch (error) {
+      console.error("Error adding comment", error);
+      setError(`Failed to post comment: ${error.message}`);
+    }
+  };
 
   return (
     <div className={styles.blogContainer}>
-      <h2 className="text-3xl font-bold mb-8">Blog Posts</h2>
+      {error && (
+        <div className={styles.errorMessage}>
+          {error}
+        </div>
+      )}
+
+      <h2 className={styles.blogTitle}>Blog Posts</h2>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {posts?.map((post) => (
-          <Card 
+      <div className={styles.postGrid}>
+        {posts.map((post) => (
+          <div 
             key={post.id} 
-            className="overflow-hidden hover:shadow-lg transition-shadow duration-300"
+            className={styles.postCard}
+            onClick={() => setSelectedPost(post)}
           >
-            {post.imageUrl && (
-              <div className="relative h-48 overflow-hidden">
-                <img 
-                  src={post.imageUrl} 
-                  alt={post.title}
-                  className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"
-                />
-              </div>
-            )}
-            <div className="p-4">
-              <h3 className="text-xl font-semibold mb-2 hover:text-blue-600">
-                {post.title}
-              </h3>
-              <div className={styles.author}>
-                By {post.author || 'Anonymous'} • 
-                {format(new Date(post.createdAt), ' MMM dd, yyyy')}
-              </div>
-              <div className={styles.postContent}>
-                {post.excerpt || post.content.substring(0, 150)}...
-              </div>
-              <div className={styles.actionButtons}>
-                <button
-                  onClick={() => setSelectedPost(post)}
-                  className="text-blue-600 hover:text-blue-800 font-medium"
-                >
-                  Read More →
-                </button>
-                {post.commentCount && (
-                  <span className="text-gray-500">
-                    {post.commentCount} comments
-                  </span>
-                )}
-              </div>
-            </div>
-          </Card>
+            <h3 className={styles.postTitle}>{post.title}</h3>
+            <p className={styles.postContent}>{post.content.substring(0, 150)}...</p>
+          </div>
         ))}
       </div>
 
       {selectedPost && (
-        <div className={styles.commentSection}>
-          <h3 className="text-2xl font-semibold mb-4">Comments</h3>
-          <div className={styles.commentInput}>
-            <textarea
-              className="w-full p-2 border rounded-md"
-              placeholder="Add a comment..."
-              rows="3"
-            />
-            <div className="flex justify-end mt-2">
-              <button className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">
-                Post Comment
-              </button>
+        <div className={styles.modal}>
+          <div className={styles.modalContent}>
+            <button 
+              onClick={() => setSelectedPost(null)}
+              className={styles.closeButton}
+            >
+              ✕
+            </button>
+            <h2 className={styles.postTitle}>{selectedPost.title}</h2>
+            <p className={styles.postContent}>{selectedPost.content}</p>
+
+            <div className={styles.commentsSection}>
+              <h3>Comments</h3>
+              
+              {!user ? (
+                <button 
+                  onClick={signInWithGoogle}
+                  className={styles.loginButton}
+                >
+                  Sign in with Google
+                </button>
+              ) : (
+                <div>
+                  <textarea 
+                    value={newComment}
+                    onChange={(e) => setNewComment(e.target.value)}
+                    placeholder="Write a comment..."
+                    className={styles.commentInput}
+                  />
+                  <button 
+                    onClick={handleAddComment}
+                    className={styles.postCommentButton}
+                  >
+                    Post Comment
+                  </button>
+                </div>
+              )}
             </div>
-          </div>
-          
-          <div className={styles.loginPrompt}>
-            Please <button className="text-blue-600">log in</button> to comment
           </div>
         </div>
       )}

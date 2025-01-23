@@ -1,76 +1,117 @@
 .blogContainer {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 20px;
 }
 
-.error {
-  background-color: #fee2e2;
-  border: 1px solid #ef4444;
-  color: #b91c1c;
-  padding: 1rem;
-  border-radius: 0.5rem;
-  margin-bottom: 1rem;
-}
-
-.commentSection {
-  margin-top: 2rem;
-  border-top: 1px solid #e5e7eb;
-  padding-top: 1rem;
-}
-
-.commentInput {
-  margin-bottom: 1rem;
-}
-
-.loginPrompt {
+.blogTitle {
   text-align: center;
-  padding: 1rem;
-  background-color: #f9fafb;
-  border-radius: 0.5rem;
-  margin-top: 1rem;
+  margin-bottom: 30px;
+  font-size: 2rem;
+  color: #333;
 }
 
-.author {
-  color: #4b5563;
-  font-size: 0.875rem;
-  margin-bottom: 1rem;
+.postGrid {
   display: flex;
-  align-items: center;
-  gap: 0.5rem;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.postCard {
+  width: 300px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.postCard:hover {
+  transform: scale(1.05);
+}
+
+.postTitle {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #2c3e50;
 }
 
 .postContent {
-  line-height: 1.625;
-  margin-bottom: 1.5rem;
-  color: #374151;
-  font-size: 1rem;
+  color: #666;
+  margin-bottom: 15px;
 }
 
-.actionButtons {
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  margin-bottom: 1rem;
-  padding-top: 0.5rem;
-  border-top: 1px solid #e5e7eb;
+  z-index: 1000;
 }
 
-/* Add hover effects */
-.actionButtons button:hover {
-  transform: translateX(4px);
-  transition: transform 0.2s ease-in-out;
+.modalContent {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 600px;
+  max-height: 80%;
+  overflow-y: auto;
+  position: relative;
 }
 
-/* Add responsive adjustments */
-@media (max-width: 768px) {
-  .blogContainer {
-    padding: 1rem;
-  }
-  
-  .actionButtons {
-    flex-direction: column;
-    gap: 0.5rem;
-    align-items: flex-start;
-  }
+.closeButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.commentsSection {
+  margin-top: 20px;
+  border-top: 1px solid #eee;
+  padding-top: 20px;
+}
+
+.loginButton,
+.postCommentButton {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.loginButton:hover,
+.postCommentButton:hover {
+  background-color: #2980b9;
+}
+
+.commentInput {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  min-height: 100px;
+}
+.errorMessage {
+  background-color: #ffdddd;
+  color: #ff0000;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  text-align: center;
 }
