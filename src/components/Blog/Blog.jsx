@@ -18,7 +18,7 @@ export default function Blog() {
         id: '1',
         title: 'First Blog Post',
         content: 'This is my first blog post about my journey.',
-        author: 'John Doe',
+        author: 'Rajae',
         createdAt: new Date(),
       },
     ];
@@ -84,7 +84,7 @@ export default function Blog() {
     <div id="Blog" className={styles.blogContainer}>
       {error && <div className={styles.errorMessage}>{error}</div>}
 
-      <h2 className={styles.blogTitle}>Blog Posts</h2>
+      <h2 className={styles.blogTitle}></h2>
 
       <div className={styles.postGrid}>
         {posts.map((post) => (
@@ -94,7 +94,6 @@ export default function Blog() {
             <p className={styles.postAuthor}>By {post.author}</p>
 
             <div className={styles.commentsSection}>
-              <h4>Comments</h4>
               {/* Display comments */}
               {comments[post.id]?.map((comment) => (
                 <div key={comment.id} className={styles.comment}>

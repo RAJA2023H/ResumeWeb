@@ -5,14 +5,14 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-top: 61px;
+  padding-top: 20px;
   z-index: 2;
-  margin: 0 10%;
+  margin: 0 20%;
 }
 
 .title {
-  font-size: 30px;
-  font-weight: 600;
+  font-size: 20px;
+  font-weight: 500;
   text-decoration: none;
   color: var(--color-text);
 }
@@ -20,6 +20,7 @@
 
 .menuBtn {
   display: none;
+
 }
 
 .menu {
@@ -30,11 +31,11 @@
   display: flex;
   gap: 47px;
   list-style: none;
-  cursor: pointer
+  cursor: pointer;
 }
 
 .menuItems a {
-  font-size: 25px;
+  font-size: 20px;
   color: var(--color-text);
   text-decoration: none;
 }
