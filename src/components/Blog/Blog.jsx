@@ -20,27 +20,31 @@ export default function Blog() {
         content: 'This is my first blog post about my journey.',
         author: 'John Doe',
         createdAt: new Date(),
-      }
+      },
     ];
     setPosts(samplePosts);
   }, []);
 
-  // Fetch comments for a post
-  const fetchComments = async (postId) => {
-    const q = query(
-      collection(db, 'posts', postId, 'comments'),
-      orderBy('createdAt', 'desc')
-    );
-    onSnapshot(q, (snapshot) => {
-      setComments((prevComments) => ({
-        ...prevComments,
-        [postId]: snapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        })),
-      }));
+  // Fetch comments for all posts
+  useEffect(() => {
+    posts.forEach((post) => {
+      const q = query(
+        collection(db, 'posts', post.id, 'comments'),
+        orderBy('createdAt', 'desc')
+      );
+      const unsubscribe = onSnapshot(q, (snapshot) => {
+        setComments((prevComments) => ({
+          ...prevComments,
+          [post.id]: snapshot.docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data(),
+          })),
+        }));
+      });
+
+      return unsubscribe; // Cleanup on unmount
     });
-  };
+  }, [posts]);
 
   // Login with Google
   const signInWithGoogle = async () => {
@@ -49,7 +53,7 @@ export default function Blog() {
       setUser(result.user);
       setError(null);
     } catch (error) {
-      console.error("Login error", error);
+      console.error('Login error', error);
       setError(`Authentication failed: ${error.message}`);
     }
   };
@@ -57,7 +61,7 @@ export default function Blog() {
   // Add comment
   const handleAddComment = async (postId) => {
     if (!user || !newComment.trim()) {
-      setError("Please sign in and enter a comment");
+      setError('Please sign in and enter a comment');
       return;
     }
 
@@ -71,7 +75,7 @@ export default function Blog() {
       setNewComment('');
       setError(null);
     } catch (error) {
-      console.error("Error adding comment", error);
+      console.error('Error adding comment', error);
       setError(`Failed to post comment: ${error.message}`);
     }
   };
@@ -81,7 +85,7 @@ export default function Blog() {
       {error && <div className={styles.errorMessage}>{error}</div>}
 
       <h2 className={styles.blogTitle}>Blog Posts</h2>
-      
+
       <div className={styles.postGrid}>
         {posts.map((post) => (
           <div key={post.id} className={styles.postCard}>
@@ -91,22 +95,18 @@ export default function Blog() {
 
             <div className={styles.commentsSection}>
               <h4>Comments</h4>
-              {/* Fetch and display comments */}
-              <button
-                onClick={() => fetchComments(post.id)}
-                className={styles.loadCommentsButton}
-              >
-                Load Comments
-              </button>
+              {/* Display comments */}
               {comments[post.id]?.map((comment) => (
                 <div key={comment.id} className={styles.comment}>
-                  <p><strong>{comment.author}</strong>: {comment.text}</p>
+                  <p>
+                    <strong>{comment.author}</strong>: {comment.text}
+                  </p>
                 </div>
               ))}
 
               {/* Comment input */}
               {!user ? (
-                <button 
+                <button
                   onClick={signInWithGoogle}
                   className={styles.loginButton}
                 >
@@ -114,13 +114,13 @@ export default function Blog() {
                 </button>
               ) : (
                 <div>
-                  <textarea 
+                  <textarea
                     value={newComment}
                     onChange={(e) => setNewComment(e.target.value)}
                     placeholder="Write a comment..."
                     className={styles.commentInput}
                   />
-                  <button 
+                  <button
                     onClick={() => handleAddComment(post.id)}
                     className={styles.postCommentButton}
                   >

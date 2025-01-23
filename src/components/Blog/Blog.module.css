@@ -1,9 +1,20 @@
-.blogContainer {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
+/* Ensure the entire page has a white background */
+body, html {
+  background-color: white;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
 }
 
+/* Main blog container styling */
+.blogContainer {
+  max-width: 100%; /* Extend the container to full width */
+  margin: 0 auto;
+  padding: 20px;
+  background-color: white; /* Explicitly set to white */
+}
+
+/* Blog title styling */
 .blogTitle {
   text-align: center;
   margin-bottom: 30px;
@@ -11,38 +22,42 @@
   color: #333;
 }
 
+/* Single column layout for blog posts */
 .postGrid {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column; /* Stack posts vertically */
   gap: 20px;
-  justify-content: center;
 }
 
+/* Full-width post style */
 .postCard {
-  width: 300px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
+  width: 100%; /* Take full width of the container */
+  border: none; /* Remove border */
+  border-radius: 0; /* Remove rounded corners */
   padding: 20px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Subtle shadow for separation */
   cursor: pointer;
-  transition: transform 0.3s ease;
+  transition: background-color 0.3s ease;
 }
 
 .postCard:hover {
-  transform: scale(1.05);
+  background-color: #f9f9f9; /* Slight background change on hover */
 }
 
 .postTitle {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   margin-bottom: 10px;
   color: #2c3e50;
 }
 
 .postContent {
+  font-size: 1rem;
+  line-height: 1.6;
   color: #666;
-  margin-bottom: 15px;
 }
 
+/* Modal styling */
 .modal {
   position: fixed;
   top: 0;
@@ -57,7 +72,7 @@
 }
 
 .modalContent {
-  background: white;
+  background-color: white; /* Explicitly set to white */
   padding: 30px;
   border-radius: 10px;
   width: 90%;
@@ -77,6 +92,7 @@
   cursor: pointer;
 }
 
+/* Comments section */
 .commentsSection {
   margin-top: 20px;
   border-top: 1px solid #eee;
@@ -99,6 +115,7 @@
   background-color: #2980b9;
 }
 
+/* Comment input styling */
 .commentInput {
   width: 100%;
   padding: 10px;
@@ -107,6 +124,8 @@
   border-radius: 5px;
   min-height: 100px;
 }
+
+/* Error message styling */
 .errorMessage {
   background-color: #ffdddd;
   color: #ff0000;
