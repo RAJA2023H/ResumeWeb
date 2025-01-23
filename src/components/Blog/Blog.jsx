@@ -6,8 +6,7 @@ import styles from './Blog.module.css';
 
 export default function Blog() {
   const [posts, setPosts] = useState([]);
-  const [selectedPost, setSelectedPost] = useState(null);
-  const [comments, setComments] = useState([]);
+  const [comments, setComments] = useState({});
   const [newComment, setNewComment] = useState('');
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
@@ -26,6 +25,23 @@ export default function Blog() {
     setPosts(samplePosts);
   }, []);
 
+  // Fetch comments for a post
+  const fetchComments = async (postId) => {
+    const q = query(
+      collection(db, 'posts', postId, 'comments'),
+      orderBy('createdAt', 'desc')
+    );
+    onSnapshot(q, (snapshot) => {
+      setComments((prevComments) => ({
+        ...prevComments,
+        [postId]: snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        })),
+      }));
+    });
+  };
+
   // Login with Google
   const signInWithGoogle = async () => {
     try {
@@ -39,18 +55,18 @@ export default function Blog() {
   };
 
   // Add comment
-  const handleAddComment = async () => {
+  const handleAddComment = async (postId) => {
     if (!user || !newComment.trim()) {
       setError("Please sign in and enter a comment");
       return;
     }
 
     try {
-      await addDoc(collection(db, 'posts', selectedPost.id, 'comments'), {
+      await addDoc(collection(db, 'posts', postId, 'comments'), {
         text: newComment,
         author: user.displayName || 'Anonymous',
         createdAt: new Date(),
-        userId: user.uid
+        userId: user.uid,
       });
       setNewComment('');
       setError(null);
@@ -61,49 +77,40 @@ export default function Blog() {
   };
 
   return (
-    <div id="Blog"className={styles.blogContainer}>
-      {error && (
-        <div className={styles.errorMessage}>
-          {error}
-        </div>
-      )}
+    <div id="Blog" className={styles.blogContainer}>
+      {error && <div className={styles.errorMessage}>{error}</div>}
 
       <h2 className={styles.blogTitle}>Blog Posts</h2>
       
       <div className={styles.postGrid}>
         {posts.map((post) => (
-          <div 
-            key={post.id} 
-            className={styles.postCard}
-            onClick={() => setSelectedPost(post)}
-          >
+          <div key={post.id} className={styles.postCard}>
             <h3 className={styles.postTitle}>{post.title}</h3>
-            <p className={styles.postContent}>{post.content.substring(0, 150)}...</p>
-          </div>
-        ))}
-      </div>
-
-      {selectedPost && (
-        <div className={styles.modal}>
-          <div className={styles.modalContent}>
-            <button 
-              onClick={() => setSelectedPost(null)}
-              className={styles.closeButton}
-            >
-              ✕
-            </button>
-            <h2 className={styles.postTitle}>{selectedPost.title}</h2>
-            <p className={styles.postContent}>{selectedPost.content}</p>
+            <p className={styles.postContent}>{post.content}</p>
+            <p className={styles.postAuthor}>By {post.author}</p>
 
             <div className={styles.commentsSection}>
-              <h3>Comments</h3>
-              
+              <h4>Comments</h4>
+              {/* Fetch and display comments */}
+              <button
+                onClick={() => fetchComments(post.id)}
+                className={styles.loadCommentsButton}
+              >
+                Load Comments
+              </button>
+              {comments[post.id]?.map((comment) => (
+                <div key={comment.id} className={styles.comment}>
+                  <p><strong>{comment.author}</strong>: {comment.text}</p>
+                </div>
+              ))}
+
+              {/* Comment input */}
               {!user ? (
                 <button 
                   onClick={signInWithGoogle}
                   className={styles.loginButton}
                 >
-                  Sign in with Google
+                  Login to Comment
                 </button>
               ) : (
                 <div>
@@ -114,7 +121,7 @@ export default function Blog() {
                     className={styles.commentInput}
                   />
                   <button 
-                    onClick={handleAddComment}
+                    onClick={() => handleAddComment(post.id)}
                     className={styles.postCommentButton}
                   >
                     Post Comment
@@ -123,8 +130,8 @@ export default function Blog() {
               )}
             </div>
           </div>
-        </div>
-      )}
+        ))}
+      </div>
     </div>
   );
 }
