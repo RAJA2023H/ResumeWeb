@@ -30,6 +30,7 @@
   display: flex;
   gap: 47px;
   list-style: none;
+  cursor: pointer
 }
 
 .menuItems a {

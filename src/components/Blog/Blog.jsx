@@ -61,7 +61,7 @@ export default function Blog() {
   };
 
   return (
-    <div className={styles.blogContainer}>
+    <div id="Blog"className={styles.blogContainer}>
       {error && (
         <div className={styles.errorMessage}>
           {error}

@@ -6,8 +6,10 @@ import { Experience } from './components/Experience/Experience';
 import { Projects } from './components/Projects/Projects';
 import { Contact } from './components/Contact/Contact';
 import Blog from './components/Blog/Blog';
+import Privacy from './components/Policy/Privacy'; 
 import { init } from '@emailjs/browser';
 import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 
 
 function App() {
@@ -16,17 +18,26 @@ function App() {
   }, []);
 
   return (
-    <div className={styles.App}>
-      <Navbar />
-      <Hero />
-      <About />
-      <Experience />
-      <Projects />
-      <Blog />
-      <Contact />
-      
-      
-    </div>
+    <Router>
+      <div className={styles.App}>
+        <Navbar />
+        <Routes>
+          {/* Homepage route with Hero and other sections */}
+          <Route path="/" element={
+            <>
+              <Hero />
+              <About id="about" />
+              <Experience id="experience" />
+              <Projects id="projects" />
+              <Contact id="contact" />
+            </>
+          } />
+          {/* Separate routes for Blog and Privacy */}
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/privacy" element={<Privacy />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
