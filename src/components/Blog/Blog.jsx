@@ -84,8 +84,6 @@ export default function Blog() {
     <div id="Blog" className={styles.blogContainer}>
       {error && <div className={styles.errorMessage}>{error}</div>}
 
-      <h2 className={styles.blogTitle}></h2>
-
       <div className={styles.postGrid}>
         {posts.map((post) => (
           <div key={post.id} className={styles.postCard}>
