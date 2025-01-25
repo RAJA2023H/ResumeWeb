@@ -3,6 +3,7 @@ import { deleteDoc, doc } from 'firebase/firestore';
 import { db } from '../../firebase';
 import CommentSection from './CommentSection';
 import styles from './Blog.module.css';
+import { Timestamp } from 'firebase/firestore';
 
 export default function PostList({ posts, user, setError }) {
   const handleDeletePost = async (postId) => {
