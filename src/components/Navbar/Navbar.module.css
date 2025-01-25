@@ -7,7 +7,7 @@
   justify-content: space-between;
   padding-top: 20px;
   z-index: 2;
-  margin: 0 20%;
+  margin: 0 5%;
 }
 
 .title {
@@ -15,6 +15,7 @@
   font-weight: 500;
   text-decoration: none;
   color: var(--color-text);
+  margin-right: auto
 }
 
 
@@ -102,9 +103,11 @@
     z-index: 1;
   }
   .fullscreenBtn {
-    /* Match your mobile menu styling */
     width: 100%;
     justify-content: flex-start;
     padding: 10px 20px;
-}
+  }
+  .title {
+    margin-right: 10px;
+  }
 }

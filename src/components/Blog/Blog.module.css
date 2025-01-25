@@ -1,149 +1,186 @@
-/* Reddit-inspired Blog Styles */
 .blogContainer {
-  width: 100%;
-  max-width: 640px;
+  max-width: 800px;
   margin: 0 auto;
-  margin-top: 49px;
-  padding: 0;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.authSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: #f4f4f4;
+  border-radius: 5px;
+}
+
+.authButton, .addPostButton {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  margin: 0 5px;
   border-radius: 4px;
-  color: #000000;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.authButton:hover, .addPostButton:hover {
+  background-color: #45a049;
+}
+
+.errorMessage {
+  color: red;
+  background-color: #ffeeee;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 4px;
 }
 
 .postGrid {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 15px;
 }
 
 .postCard {
-  background-color: #ffffff;
-  border: 1px solid #343536;
-  border-radius: 4px;
-  padding: 16px;
-  position: relative;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.postHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
 }
 
 .postTitle {
-  color: #000000;
-  font-size: 18px;
-  font-weight: 600;
-  margin-bottom: 8px;
-  line-height: 1.3;
+  margin: 0;
+  color: #333;
+}
+
+.deletePostButton {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.deletePostButton:hover {
+  background-color: #d32f2f;
 }
 
 .postContent {
-  color: #000000;
-  font-size: 14px;
-  line-height: 1.5;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
+  color: #666;
 }
 
 .postAuthor {
-  color: #595959;
-  font-size: 12px;
-  margin-bottom: 12px;
+  font-style: italic;
+  color: #888;
+  margin-bottom: 15px;
 }
 
 .commentsSection {
-  background-color: #74748b;
-  border-radius: 4px;
-  padding: 12px;
-  margin-top: 12px;
+  border-top: 1px solid #eee;
+  padding-top: 10px;
 }
 
 .comment {
-  background-color: #74748b;
-  border-bottom: 1px solid #343536;
-  padding: 8px 0;
-}
-
-.comment:last-child {
-  border-bottom: none;
-}
-
-.comment p {
-  margin: 0;
-  color: #000000;
-  font-size: 14px;
-}
-
-.comment strong {
-  color: hsl(210, 36%, 18%);
-  font-size: 12px;
-  margin-right: 8px;
-}
-
-.loginButton {
-  background-color: #01253f; /* Reddit blue */
-  color: white;
-  border: none;
+  background-color: #f9f9f9;
+  padding: 8px;
+  margin-bottom: 8px;
   border-radius: 4px;
-  padding: 10px 16px;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  text-transform: uppercase;
-  width: 100%;
-  transition: background-color 0.2s ease;
 }
 
-.loginButton:hover {
-  background-color: #3394dc;
+.loginPrompt {
+  color: #888;
+  text-align: center;
+  margin: 10px 0;
+}
+
+.commentInputContainer {
+  display: flex;
+  flex-direction: column;
 }
 
 .commentInput {
   width: 100%;
-  background-color: #272729;
-  border: 1px solid #343536;
-  border-radius: 4px;
-  color: #d7dadc;
+  min-height: 80px;
+  margin-bottom: 10px;
   padding: 10px;
-  margin-bottom: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
   resize: vertical;
-  min-height: 100px;
-  font-size: 14px;
 }
 
 .postCommentButton {
-  background-color: #0079d3;
+  align-self: flex-end;
+  background-color: #4CAF50;
   color: white;
   border: none;
-  border-radius: 4px;
   padding: 8px 16px;
-  font-size: 14px;
-  font-weight: 600;
+  border-radius: 4px;
   cursor: pointer;
-  text-transform: uppercase;
-  transition: background-color 0.2s ease;
 }
 
-.postCommentButton:hover {
-  background-color: #3394dc;
+.postCommentButton:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
 }
 
-.errorMessage {
-  background-color: #ff4500; /* Reddit-orange for errors */
-  color: white;
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modalContent {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 500px;
+  max-width: 90%;
+}
+
+.modalButtons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.input, .textarea {
+  width: 100%;
   padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
   border-radius: 4px;
-  margin-bottom: 12px;
-  font-size: 14px;
-  text-align: center;
 }
 
-/* Scrollbar styling for dark mode */
-.commentsSection::-webkit-scrollbar {
-  width: 8px;
+.textarea {
+  min-height: 150px;
+  resize: vertical;
 }
 
-.commentsSection::-webkit-scrollbar-track {
-  background: #272729;
-}
-
-.commentsSection::-webkit-scrollbar-thumb {
-  background-color: #343536;
+.cancelButton {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 8px 16px;
   border-radius: 4px;
+  cursor: pointer;
 }
