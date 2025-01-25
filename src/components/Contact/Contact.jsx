@@ -33,6 +33,10 @@ export const Contact = () => {
                     </li>
                 </ul>
             </div>
+            <div className={styles.projectNote}>
+                <p>This web page is part of ALX Specializations Portfolio Project</p>
+                <p>Project done in teams of 1 people : Rajae Hemmany</p>
+            </div>
         </footer>
     );   
 };

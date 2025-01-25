@@ -1,17 +1,69 @@
+@import "../../vars.css";
+
 .policyContainer {
-    padding: 20px;
-    max-width: 800px;
-    margin: 0 auto;
-    font-family: Arial, sans-serif;
+
+  padding: 100px;
+  max-width: 800px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+}
+  
+h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: var(--color-text);}
+  
+p {
+  font-size: 18px;
+  margin-bottom: 15px;
+  color: var(--color-text);
+  line-height: 1.6;
+}
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.text {
+  text-align: center;
+}
+
+.text p {
+  font-size: 18px;
+  margin-bottom: 15px;
+  line-height: 1.6;
+}
+.formSection {
+  margin-top: 20px;
+}
+.projectNote {
+  color: #777;
+  font-size: 14px;
+  text-align: center;
+  margin-top: 20px;
+  font-style: italic;
+  opacity: 0.7;
+}
+@media (max-width: 600px) {
+  .policyContainer {
+    padding: 10px;
+    font-size: 16px;
   }
   
   h1 {
-    font-size: 24px;
-    margin-bottom: 10px;
+    font-size: 20px;
   }
   
   p {
-    font-size: 18px;
-    margin-bottom: 15px;
+    font-size: 16px;
   }
-  
+}
+.container {
+  padding: 10px;
+}
+
+.text p {
+  font-size: 16px;
+}
