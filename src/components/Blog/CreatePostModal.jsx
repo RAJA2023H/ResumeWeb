@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { addDoc, collection } from 'firebase/firestore';
+import { addDoc, collection, Timestamp } from 'firebase/firestore';
 import { db, isAdmin  } from '../../firebase';
 import styles from './Blog.module.css';
 
@@ -27,7 +27,7 @@ export default function CreatePostModal({ isOpen, onClose, user, setError }) {
         content: newPostContent,
         author: user.displayName || 'Anonymous',
         userId: user.uid,
-        createdAt: new Date().toISOString(),
+        createdAt: Timestamp.now(),
       });
 
         setNewPostTitle('');

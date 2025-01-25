@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import { getFirestore, deleteDoc, doc } from 'firebase/firestore';
+import { getFirestore, deleteDoc, doc, Timestamp } from 'firebase/firestore';
 import { getAuth, GoogleAuthProvider } from 'firebase/auth';
 
 
@@ -32,3 +32,12 @@ export const isAdmin = (user) => {
     const adminEmails = ['rhemmany@gmail.com']; 
     return user && adminEmails.includes(user.email);
   };
+  const otherData = {
+    title: formData.title,
+    content: formData.content,
+}
+const postData = {
+    ...otherData,
+    createdAt: Timestamp.now(),
+};
+const formattedDate = post.createdAt.toDate().toLocaleString();

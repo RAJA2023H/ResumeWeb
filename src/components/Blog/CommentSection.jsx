@@ -65,7 +65,7 @@ export default function CommentSection({ postId, user, setError }) {
           <p>
             <strong>{comment.author}</strong>: {comment.text}
             <span className={styles.commentDate}>
-              {new Date(comment.createdAt).toLocaleString()}
+              {comment.createdAt?.toDate()?.toLocaleString() || 'Unknown Date'}
             </span>
             {isAdmin(user) && (
               <button 
