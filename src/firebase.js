@@ -25,10 +25,9 @@ try {
     console.error("Firebase initialization error:", error);
 }
 
-export { db, auth, googleProvider };
-
-// Add admin check
-export const isAdmin = (user) => {
+const isAdmin = (user) => {
     const adminEmails = ['rhemmany@gmail.com']; 
     return user && adminEmails.includes(user.email);
   };
+  
+export { db, auth, googleProvider, isAdmin };

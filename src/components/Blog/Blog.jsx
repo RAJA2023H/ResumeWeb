@@ -47,6 +47,10 @@ export default function Blog() {
   // Login
   const signInWithGoogle = async () => {
     try {
+      const provider = new GoogleAuthProvider();
+      provider.setCustomParameters({
+        'prompt': 'select_account' // account selection
+    });
       const result = await signInWithPopup(auth, googleProvider);
       setUser(result.user);
       setError(null);
