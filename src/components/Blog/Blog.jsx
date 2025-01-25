@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { collection, query, getDocs, onSnapshot } from 'firebase/firestore';
 import { signInWithPopup, signOut } from 'firebase/auth';
-import { db, auth, googleProvider } from '../../firebase';
+import { db, auth, googleProvider, isAdmin } from '../../firebase';
 import PostList from './PostList';
 import CreatePostModal from './CreatePostModal';
 import styles from './Blog.module.css';
@@ -74,12 +74,14 @@ export default function Blog() {
           <>
             <span>Welcome, {user.displayName}</span>
             <button onClick={handleSignOut} className={styles.authButton}>Logout</button>
-            <button 
-              onClick={() => setIsCreatePostModalOpen(true)} 
-              className={styles.addPostButton}
-            >
-              Create New Post
-            </button>
+            {isAdmin(user) && (
+              <button 
+                onClick={() => setIsCreatePostModalOpen(true)} 
+                className={styles.addPostButton}
+              >
+                Create New Post
+              </button>
+            )}
           </>
         ) : (
           <button onClick={signInWithGoogle} className={styles.authButton}>

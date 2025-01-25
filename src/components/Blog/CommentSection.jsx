@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { collection, addDoc, query, orderBy, onSnapshot } from 'firebase/firestore';
-import { db } from '../../firebase';
+import { db,  isAdmin } from '../../firebase';
 import styles from './Blog.module.css';
 
 
@@ -44,13 +44,34 @@ export default function CommentSection({ postId, user, setError }) {
       setError(`Failed to post comment: ${error.message}`);
     }
   };
+  const handleDeleteComment = async (commentId) => {
+    // Only admin can delete comments
+    if (!isAdmin(user)) {
+      setError('Only admin can delete comments');
+      return;
+    }
 
+    try {
+      await deleteDoc(doc(db, 'Blog posts', 'Posts', postId, 'comments', commentId));
+    } catch (error) {
+      console.error('Error deleting comment', error);
+      setError(`Failed to delete comment: ${error.message}`);
+    }
+  };
   return (
     <div className={styles.commentsSection}>
       {comments.map((comment) => (
         <div key={comment.id} className={styles.comment}>
           <p>
             <strong>{comment.author}</strong>: {comment.text}
+            {isAdmin(user) && (
+              <button 
+                onClick={() => handleDeleteComment(comment.id)} 
+                className={styles.deleteCommentButton}
+              >
+                Delete
+              </button>
+            )}
           </p>
         </div>
       ))}

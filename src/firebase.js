@@ -26,3 +26,9 @@ try {
 }
 
 export { db, auth, googleProvider };
+
+// Add admin check
+export const isAdmin = (user) => {
+    const adminEmails = ['rhemmany@gmail.com']; 
+    return user && adminEmails.includes(user.email);
+  };

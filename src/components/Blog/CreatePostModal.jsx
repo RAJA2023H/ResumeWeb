@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { addDoc, collection } from 'firebase/firestore';
-import { db } from '../../firebase';
+import { db, isAdmin  } from '../../firebase';
 import styles from './Blog.module.css';
 
 export default function CreatePostModal({ isOpen, onClose, user, setError }) {
@@ -8,10 +8,12 @@ export default function CreatePostModal({ isOpen, onClose, user, setError }) {
   const [newPostContent, setNewPostContent] = useState('');
 
   const handleAddPost = async () => {
-    if (!user) {
-      setError('You must be logged in to create a post');
+
+    if (!isAdmin(user)) {
+      setError('Only admin can create posts');
       return;
     }
+
 
     if (!newPostTitle.trim() || !newPostContent.trim()) {
       setError('Please enter a title and content for the post');
@@ -24,8 +26,9 @@ export default function CreatePostModal({ isOpen, onClose, user, setError }) {
         content: newPostContent,
         author: user.displayName || 'Anonymous',
         userId: user.uid,
-        createdAt: new Date(),});
-        // Reset form and close modal
+        createdAt: new Date(),
+      });
+
         setNewPostTitle('');
         setNewPostContent('');
         onClose();
