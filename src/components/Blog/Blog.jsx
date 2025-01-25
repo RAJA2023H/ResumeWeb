@@ -22,9 +22,11 @@ export default function Blog() {
           (snapshot) => {
             console.log('Raw Snapshot:', snapshot);
             console.log('Number of docs:', snapshot.docs.length);
-            const postsData = snapshot.docs.map((doc) => ({
-              id: doc.id,
-              ...doc.data(),
+            const postsData = snapshot.docs
+              .filter(doc => doc.data().title && doc.data().content)
+              .map((doc) => ({
+                id: doc.id,
+                ...doc.data(),
             }));
             
             console.log('Parsed Posts:', postsData);
