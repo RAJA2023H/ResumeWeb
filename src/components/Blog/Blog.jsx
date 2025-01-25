@@ -72,7 +72,10 @@ export default function Blog() {
       <div className={styles.authSection}>
         {user ? (
           <>
-            <span>Welcome, {user.displayName}</span>
+            <span>
+              Welcome, {user.displayName}
+              {isAdmin(user) ? " (Admin)" : " (User)"}
+            </span>
             <button onClick={handleSignOut} className={styles.authButton}>Logout</button>
             {isAdmin(user) && (
               <button 

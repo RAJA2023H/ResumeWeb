@@ -11,6 +11,7 @@ export default function CreatePostModal({ isOpen, onClose, user, setError }) {
 
     if (!isAdmin(user)) {
       setError('Only admin can create posts');
+      onClose();
       return;
     }
 
