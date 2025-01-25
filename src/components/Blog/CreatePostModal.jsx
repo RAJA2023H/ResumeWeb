@@ -19,13 +19,12 @@ export default function CreatePostModal({ isOpen, onClose, user, setError }) {
     }
 
     try {
-      await addDoc(collection(db, 'Blog posts', 'Posts'), {
+      await addDoc(collection(db, 'Blog posts'), {
         title: newPostTitle,
         content: newPostContent,
         author: user.displayName || 'Anonymous',
         userId: user.uid,
-        createdAt: new Date(),
-      });
+        createdAt: new Date(),});
         // Reset form and close modal
         setNewPostTitle('');
         setNewPostContent('');

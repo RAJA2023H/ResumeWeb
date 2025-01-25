@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { doc, collection, getDoc, onSnapshot } from 'firebase/firestore';
+import { collection, query, getDocs, onSnapshot } from 'firebase/firestore';
 import { signInWithPopup, signOut } from 'firebase/auth';
 import { db, auth, googleProvider } from '../../firebase';
 import PostList from './PostList';
@@ -17,7 +17,7 @@ export default function Blog() {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const postsRef = collection(db, 'Blog posts', 'Posts', 'items');   
+        const postsRef = collection(db, 'Blog posts', 'Posts', 'items'); 
         const unsubscribe = onSnapshot(postsRef, 
           (snapshot) => {
             const postsData = snapshot.docs.map((doc) => ({

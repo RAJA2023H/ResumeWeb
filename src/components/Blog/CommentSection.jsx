@@ -12,7 +12,8 @@ export default function CommentSection({ postId, user, setError }) {
     const q = query(
       collection(db, 'Blog posts', 'Posts', postId, 'comments'), 
       orderBy('createdAt', 'desc')
-    );  
+    );
+   
     const unsubscribe = onSnapshot(q, (snapshot) => {
       setComments(snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
     });
