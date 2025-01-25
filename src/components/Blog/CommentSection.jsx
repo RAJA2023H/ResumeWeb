@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { collection, addDoc, query, orderBy, onSnapshot, deleteDoc, doc } from 'firebase/firestore';
 import { db,  isAdmin } from '../../firebase';
 import styles from './Blog.module.css';
+import { Timestamp } from 'firebase/firestore';  
 
 
 export default function CommentSection({ postId, user, setError }) {
@@ -33,7 +34,7 @@ export default function CommentSection({ postId, user, setError }) {
         {
             text: newComment,
             author: user.displayName || 'Anonymous',
-            createdAt: new Date().toISOString(),
+            createdAt: Timestamp.now(),
             userId: user.uid,
         }
       );
@@ -65,7 +66,12 @@ export default function CommentSection({ postId, user, setError }) {
           <p>
             <strong>{comment.author}</strong>: {comment.text}
             <span className={styles.commentDate}>
-              {comment.createdAt?.toDate()?.toLocaleString() || 'Unknown Date'}
+              {comment.createdAt instanceof Timestamp 
+                ? comment.createdAt.toDate().toLocaleString() 
+                : (comment.createdAt 
+                  ? new Date(comment.createdAt).toLocaleString() 
+                  : 'Unknown Date')
+              }
             </span>
             {isAdmin(user) && (
               <button 
