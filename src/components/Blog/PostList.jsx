@@ -37,9 +37,11 @@ export default function PostList({ posts, user, setError }) {
           <p className={styles.postContent}>{post.content}</p>
           <p className={styles.postAuthor}>By {post.author}</p>
           <p className={styles.postDate}>
-            Posted on: {post.createdAt instanceof Timestamp 
-              ? post.createdAt.toDate().toLocaleString() 
-              : 'Unknown Date'}
+            Posted on: {
+              post.createdAt instanceof Timestamp 
+                ? post.createdAt.toDate().toLocaleString() 
+                : (post.createdAt ? new Date(post.createdAt).toLocaleString() : 'Unknown Date')
+            }
           </p>
           <CommentSection postId={post.id} user={user} setError={setError} />
         </div>
