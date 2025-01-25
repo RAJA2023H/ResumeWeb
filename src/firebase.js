@@ -3,7 +3,6 @@ import { getAnalytics } from "firebase/analytics";
 import { getFirestore, deleteDoc, doc, Timestamp } from 'firebase/firestore';
 import { getAuth, GoogleAuthProvider } from 'firebase/auth';
 
-
 const firebaseConfig = {
     apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
     authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
@@ -13,6 +12,7 @@ const firebaseConfig = {
     appId: import.meta.env.VITE_FIREBASE_APP_ID,
     measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
 };
+
 let app, analytics, db, auth, googleProvider;
 
 try {
@@ -25,19 +25,10 @@ try {
     console.error("Firebase initialization error:", error);
 }
 
-export { db, auth, googleProvider };
+export { db, auth, googleProvider, Timestamp };
 
 // Add admin check
 export const isAdmin = (user) => {
     const adminEmails = ['rhemmany@gmail.com']; 
     return user && adminEmails.includes(user.email);
-  };
-  const otherData = {
-    title: formData.title,
-    content: formData.content,
-}
-const postData = {
-    ...otherData,
-    createdAt: Timestamp.now(),
 };
-const formattedDate = post.createdAt.toDate().toLocaleString();
