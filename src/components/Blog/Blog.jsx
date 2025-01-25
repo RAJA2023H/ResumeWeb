@@ -17,7 +17,7 @@ export default function Blog() {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const postsRef = collection(db, 'Blog posts', 'Posts', 'someId');
+        const postsRef = collection(db, 'Blog posts', 'Posts');
         
         const unsubscribe = onSnapshot(postsRef, 
           (snapshot) => {

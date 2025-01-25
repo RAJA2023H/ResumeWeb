@@ -10,9 +10,9 @@ export default function CommentSection({ postId, user, setError }) {
 
   useEffect(() => {
     const q = query(
-        collection(db, 'Blog posts', 'Posts', postId, 'comments'), 
-        orderBy('createdAt', 'desc')
-    );
+      collection(db, 'Blog posts', 'Posts', postId, 'comments'), 
+      orderBy('createdAt', 'desc')
+    );  
     const unsubscribe = onSnapshot(q, (snapshot) => {
       setComments(snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
     });
@@ -27,15 +27,15 @@ export default function CommentSection({ postId, user, setError }) {
     }
 
     try {
-        await addDoc(
-            collection(db, 'Blog posts', 'Posts', postId, 'comments'),
-            {
-                text: newComment,
-                author: user.displayName || 'Anonymous',
-                createdAt: new Date(),
-                userId: user.uid,
-            }
-        );
+      await addDoc(
+        collection(db, 'Blog posts', 'Posts', postId, 'comments'),
+        {
+            text: newComment,
+            author: user.displayName || 'Anonymous',
+            createdAt: new Date(),
+            userId: user.uid,
+        }
+      );
       setNewComment('');
       setError(null);
     } catch (error) {

@@ -12,7 +12,7 @@ export default function PostList({ posts, user, setError }) {
     }
 
     try {
-        await deleteDoc(doc(db, 'Blog posts', 'Posts', postId));
+      await deleteDoc(doc(db, 'Blog posts', 'Posts', postId));
     } catch (error) {
         console.error('Error deleting post', error);
         setError(`Failed to delete post: ${error.message}`);
