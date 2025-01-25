@@ -17,9 +17,11 @@ export default function Blog() {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const postsRef = collection(db, 'Blog posts', 'Posts', 'items'); 
+        const postsRef = collection(db, 'Blog posts');
         const unsubscribe = onSnapshot(postsRef, 
           (snapshot) => {
+            console.log('Raw Snapshot:', snapshot);
+            console.log('Number of docs:', snapshot.docs.length);
             const postsData = snapshot.docs.map((doc) => ({
               id: doc.id,
               ...doc.data(),
