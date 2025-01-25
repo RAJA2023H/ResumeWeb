@@ -36,6 +36,7 @@ export default function PostList({ posts, user, setError }) {
           </div>
           <p className={styles.postContent}>{post.content}</p>
           <p className={styles.postAuthor}>By {post.author}</p>
+          <p className={styles.postDate}>Posted on: {new Date(post.createdAt).toLocaleString()}</p>
 
           <CommentSection postId={post.id} user={user} setError={setError} />
         </div>

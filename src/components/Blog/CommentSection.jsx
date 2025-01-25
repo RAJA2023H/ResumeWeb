@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { collection, addDoc, query, orderBy, onSnapshot } from 'firebase/firestore';
+import { collection, addDoc, query, orderBy, onSnapshot, deleteDoc, doc } from 'firebase/firestore';
 import { db,  isAdmin } from '../../firebase';
 import styles from './Blog.module.css';
 
@@ -33,7 +33,7 @@ export default function CommentSection({ postId, user, setError }) {
         {
             text: newComment,
             author: user.displayName || 'Anonymous',
-            createdAt: new Date(),
+            createdAt: new Date().toISOString(),
             userId: user.uid,
         }
       );
@@ -52,7 +52,7 @@ export default function CommentSection({ postId, user, setError }) {
     }
 
     try {
-      await deleteDoc(doc(db, 'Blog posts', 'Posts', postId, 'comments', commentId));
+      await deleteDoc(doc(db, 'Blog posts', postId, 'comments', commentId));
     } catch (error) {
       console.error('Error deleting comment', error);
       setError(`Failed to delete comment: ${error.message}`);
@@ -64,6 +64,9 @@ export default function CommentSection({ postId, user, setError }) {
         <div key={comment.id} className={styles.comment}>
           <p>
             <strong>{comment.author}</strong>: {comment.text}
+            <span className={styles.commentDate}>
+              {new Date(comment.createdAt).toLocaleString()}
+            </span>
             {isAdmin(user) && (
               <button 
                 onClick={() => handleDeleteComment(comment.id)} 
