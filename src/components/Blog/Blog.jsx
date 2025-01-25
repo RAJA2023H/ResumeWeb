@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { collection, query, getDocs, onSnapshot } from 'firebase/firestore';
-import { signInWithPopup, signOut } from 'firebase/auth';
+import { signInWithPopup, signOut, GoogleAuthProvider } from 'firebase/auth';
 import { db, auth, googleProvider, isAdmin } from '../../firebase';
 import PostList from './PostList';
 import CreatePostModal from './CreatePostModal';
