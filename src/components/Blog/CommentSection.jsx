@@ -52,7 +52,7 @@ export default function CommentSection({ postId, user, setError }) {
     }
 
     try {
-      await deleteDoc(doc(db, 'Blog posts', 'Posts', postId, 'comments', commentId));
+      await deleteDoc(collection(db, 'Blog posts', 'Posts', postId, 'comments', commentId));
     } catch (error) {
       console.error('Error deleting comment', error);
       setError(`Failed to delete comment: ${error.message}`);
