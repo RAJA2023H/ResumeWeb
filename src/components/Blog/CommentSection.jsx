@@ -10,7 +10,7 @@ export default function CommentSection({ postId, user, setError }) {
 
   useEffect(() => {
     const q = query(
-      collection(db, 'Blog posts', 'Posts', postId, 'comments'), 
+      collection(db, 'Blog posts', postId, 'comments'), 
       orderBy('createdAt', 'desc')
     );
    
@@ -29,7 +29,7 @@ export default function CommentSection({ postId, user, setError }) {
 
     try {
       await addDoc(
-        collection(db, 'Blog posts', 'Posts', postId, 'comments'),
+        collection(db, 'Blog posts', postId, 'comments'),
         {
             text: newComment,
             author: user.displayName || 'Anonymous',
@@ -52,7 +52,7 @@ export default function CommentSection({ postId, user, setError }) {
     }
 
     try {
-      await deleteDoc(collection(db, 'Blog posts', 'Posts', postId, 'comments', commentId));
+      await deleteDoc(doc(db, 'Blog posts', 'Posts', postId, 'comments', commentId));
     } catch (error) {
       console.error('Error deleting comment', error);
       setError(`Failed to delete comment: ${error.message}`);
