@@ -207,3 +207,16 @@ body {
   font-size: 0.7em;
   padding: 2px 5px;
 }
+.postImages {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.postImage {
+  max-width: 200px;
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+}
