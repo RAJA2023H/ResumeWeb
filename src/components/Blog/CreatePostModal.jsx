@@ -2,13 +2,20 @@ import React, { useState } from 'react';
 import { addDoc, collection, Timestamp } from 'firebase/firestore';
 import { db, isAdmin  } from '../../firebase';
 import styles from './Blog.module.css';
+import RichTextEditor from './RichTextEditor';
+import ImageUploader from './ImageUploader';
+
 
 export default function CreatePostModal({ isOpen, onClose, user, setError }) {
   const [newPostTitle, setNewPostTitle] = useState('');
-  const [newPostContent, setNewPostContent] = useState('');
+  const [postContent, setPostContent] = useState('');
+  const [imageUrls, setImageUrls] = useState([]);
+
+  const handleImageUpload = (url) => {
+    setImageUrls([...imageUrls, url]);
+  };
 
   const handleAddPost = async () => {
-
     if (!isAdmin(user)) {
       setError('Only admin can create posts');
       onClose();
@@ -16,7 +23,7 @@ export default function CreatePostModal({ isOpen, onClose, user, setError }) {
     }
 
 
-    if (!newPostTitle.trim() || !newPostContent.trim()) {
+    if (!newPostTitle.trim() || !postContent) {
       setError('Please enter a title and content for the post');
       return;
     }
@@ -24,14 +31,16 @@ export default function CreatePostModal({ isOpen, onClose, user, setError }) {
     try {
       await addDoc(collection(db, 'Blog posts'), {
         title: newPostTitle,
-        content: newPostContent,
+        content: postContent,
+        images: imageUrls,
         author: user.displayName || 'Anonymous',
         userId: user.uid,
         createdAt: Timestamp.now(),
       });
 
         setNewPostTitle('');
-        setNewPostContent('');
+        setPostContent('');
+        setImageUrls([]);
         onClose();
         setError(null);
     } catch (error) {
@@ -53,11 +62,11 @@ export default function CreatePostModal({ isOpen, onClose, user, setError }) {
           placeholder="Post Title"
           className={styles.input}
         />
-        <textarea
-          value={newPostContent}
-          onChange={(e) => setNewPostContent(e.target.value)}
-          placeholder="Post Content"
-          className={styles.textarea}
+        <RichTextEditor 
+          onChange={setPostContent} 
+        />
+        <ImageUploader 
+          onImageUpload={handleImageUpload} 
         />
         <div className={styles.modalButtons}>
           <button onClick={handleAddPost} className={styles.addPostButton}>

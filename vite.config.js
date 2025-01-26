@@ -2,12 +2,21 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import path from "path";
 import dotenv from 'dotenv';
+import { nodePolyfills } from 'vite-plugin-node-polyfills'
 
 
 dotenv.config();
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react(),
+    nodePolyfills({
+      globals: {
+        global: true,
+        process: true,
+      }
+    })
+  ],
   define: {
     'process.env': {
       VITE_FIREBASE_API_KEY: process.env.VITE_FIREBASE_API_KEY,

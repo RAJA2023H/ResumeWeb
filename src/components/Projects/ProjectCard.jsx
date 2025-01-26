@@ -1,10 +1,7 @@
 import React from "react";
 import styles from "./ProjectCard.module.css";
 import projectAImage from '../../../src/assets/projects/project.jpg';
-import projectBImage from '../../../src/assets/projects/project.jpg';
-import projectCImage from '../../../src/assets/projects/project.jpg';
 
-import { getImageUrl } from "../../utils";
 
 const imagesMap = {
   "projects/project.jpg": projectAImage,
