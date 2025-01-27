@@ -1,0 +1,7 @@
+[
+    {
+      "origin": ["https://resumeweb-e80f1.web.app", "http://localhost:5173"],
+      "method": ["GET", "POST", "PUT", "DELETE"],
+      "maxAgeSeconds": 3600
+    }
+  ]

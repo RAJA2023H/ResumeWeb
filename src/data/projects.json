@@ -1,26 +1,26 @@
 [
     {
-      "title": "Project A",
+      "title": "Monty Project",
       "imageSrc": "projects/project.jpg",
-      "description": "This is a project made to learn the latest languages by building an app.",
-      "skills": ["React", "Express", "Node"],
-      "demo": "https://www.example.com",
-      "source": "https://www.github.com"
+      "description": "Monty 0.98 is a scripting language that is first compiled into Monty byte codes (Just like Python). It relies on a unique stack, with specific instructions to manipulate it. The goal of this project is to create an interpreter for Monty ByteCodes files.",
+      "skills": [" LIFO and FIFO", "C - Stacks, Queues", "Global variables"],
+      "demo": "https://github.com/RAJA2023H/monty.git",
+      "source": "https://github.com/RAJA2023H/monty.git"
     },
     {
-      "title": "Project B",
+      "title": "AirBnB_clone",
       "imageSrc": "projects/project.jpg",
-      "description": "This is a project made to learn the latest languages by building an app.",
-      "skills": ["React", "Express", "Node", "Sass"],
-      "demo": "https://www.example.com",
-      "source": "https://www.github.com"
+      "description": "complete web application, integrating database storage, a back-end API, and front-end interface in a clone of AirBnB.",
+      "skills": ["Database storage", "Back-end API", " Front-end interface"],
+      "demo": "https://github.com/RAJA2023H/AirBnB_clone_v3.git",
+      "source": "https://github.com/RAJA2023H/AirBnB_clone_v3.git"
     },
     {
-      "title": "Project C",
+      "title": "ResumeWeb",
       "imageSrc": "projects/project.jpg",
-      "description": "This is a project made to learn the latest languages by building an app.",
-      "skills": ["React", "Express", "Node"],
-      "demo": "https://www.example.com",
-      "source": "https://www.github.com"
+      "description": "React-based web application designed to showcase your professional portfolio, with an integrated blog feature powered by Firebase Firestore. This project uses Vite for fast development and optimized builds.",
+      "skills": ["React", "Firebase Firestore", "Firebase Hosting"],
+      "demo": "https://github.com/RAJA2023H/ResumeWeb.git",
+      "source": "https://github.com/RAJA2023H/ResumeWeb.git"
     }
   ]
