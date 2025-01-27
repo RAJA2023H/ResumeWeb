@@ -1,19 +1,18 @@
 # ResumeWeb - React Project with Firebase Integration
 
 ## Overview
-**ResumeWeb** is a React-based web application designed to showcase your professional portfolio, with an integrated blog feature powered by Firebase Firestore. This project uses Vite for fast development and optimized builds.
+**ResumeWeb** is a React-based web application designed to showcase my professional portfolio, with an integrated blog feature powered by Firebase Firestore. This project uses Vite for fast development and optimized builds.
 
 ## Features
 - Modern, responsive design.
 - Blog feature with Firestore for dynamic content management.
 - Firebase Hosting for fast and secure deployment.
-- GitHub Actions for automated deployment workflows.
 
 ## Tech Stack
 - **Frontend**: React (with Vite)
 - **Backend**: Firebase Firestore
 - **Hosting**: Firebase Hosting
-- **Deployment**: GitHub Actions
+- **Deployment**: Firebase CLI (firebase deploy)
 
 ## Getting Started
 
